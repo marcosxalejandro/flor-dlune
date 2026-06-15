@@ -170,7 +170,8 @@ export default function ShopPage() {
         <div className="relative z-10 text-center px-6">
           <div className="text-[#E8A0BF] text-xs tracking-[5px] mb-4">LIVE NOW</div>
           <h1 className="heading-serif text-6xl md:text-7xl tracking-[-3px] text-[#111] leading-none mb-4">
-            CAPSULE 01
+            CAPSULE <span className="text-[#888]">0</span>
+            <span className="text-[#E8A0BF]">1</span>
           </h1>
           <p className="text-lg text-[#444] max-w-md mx-auto">
             Art is how we decorate Space, Music is how we decorate Time.
