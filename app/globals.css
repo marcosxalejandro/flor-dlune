@@ -1,0 +1,50 @@
+@import "tailwindcss";
+
+:root {
+  --flor-bg: #0A0A0F;
+  --flor-bg-elevated: #111113;
+  --flor-text: #F8F8F5;
+  --flor-text-muted: #A1A1AA;
+  --flor-blossom: #E8A0BF;
+  --flor-neon-rose: #FF4D94;
+  --flor-cosmic: #6B4C8A;
+  --flor-gold: #D4A84B;
+  --flor-brown: #8B5E3C;
+  --flor-border: rgba(232, 160, 191, 0.15);
+}
+
+body {
+  font-family: var(--font-geist-sans, system-ui, sans-serif);
+}
+
+.font-display {
+  font-family: var(--font-italiana, "Playfair Display", serif);
+}
+
+.font-poetic {
+  font-family: var(--font-cormorant, "Cormorant Garamond", serif);
+}
+
+/* Premium button styles */
+.btn-premium {
+  @apply px-8 py-3.5 rounded-full bg-[var(--flor-blossom)] text-[#0A0A0F] font-medium text-sm tracking-widest hover:bg-white transition-colors inline-flex items-center justify-center gap-2;
+}
+
+.btn-ghost {
+  @apply px-6 py-3.5 rounded-full border border-white/20 text-sm hover:bg-white hover:text-[#0A0A0F] transition-colors inline-flex items-center justify-center gap-2;
+}
+
+.section {
+  @apply py-20 md:py-24;
+}
+
+.pillar-card {
+  @apply border border-white/10 p-6 rounded-2xl bg-[#0A0A0F] hover:border-[var(--flor-blossom)] transition-all;
+}
+
+/* Immersive touches */
+.cosmic-bg {
+  background-image: 
+    radial-gradient(circle at 25% 30%, rgba(232,160,191,0.06) 0%, transparent 50%),
+    radial-gradient(circle at 75% 70%, rgba(107,76,138,0.06) 0%, transparent 50%);
+}

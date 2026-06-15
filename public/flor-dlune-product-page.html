@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flor D'Lune — The Garden Collection</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&amp;family=Inter:wght@300;400;500&amp;display=swap');
+    
+    body {
+      font-family: 'Inter', system_ui, sans-serif;
+    }
+    
+    .heading-serif {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .product-card {
+      transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+    
+    .product-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.15);
+    }
+
+    .water-bg {
+      background-image: url('background.jpg');
+      background-size: 100% auto; background-position: left center; background-attachment: fixed;
+      background-position: center;
+      background-repeat: no-repeat; image-rendering: crisp-edges;
+    }
+
+    .overlay-gradient {
+      background: linear-gradient(
+        to bottom, 
+        rgba(248, 248, 245, 0.65) 0%, 
+        rgba(248, 248, 245, 0.35) 35%, 
+        rgba(248, 248, 245, 0.75) 100%
+      );
+    }
+
+    .nav-link {
+      transition: color 0.2s ease;
+    }
+    
+    .nav-link:hover {
+      color: #E8A0BF;
+    }
+  </style>
+</head>
+<body class="water-bg text-[#111]">
+
+  <!-- Top Bar -->
+  <div class="bg-white/95 backdrop-blur-sm border-b border-[#E5E5E5] fixed top-0 left-0 right-0 z-50">
+    <div class="max-w-7xl mx-auto px-8 py-3 flex items-center justify-between text-sm">
+      <div class="flex items-center gap-x-8 text-xs tracking-[1.5px]">
+        <span>FREE SHIPPING OVER €150</span>
+      </div>
+      <div class="flex items-center gap-x-6 text-xs tracking-[1.5px]">
+        <a href="#" class="nav-link">NL / EN</a>
+        <a href="#" class="nav-link">ACCOUNT</a>
+        <a href="#" class="nav-link">CART (3)</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="bg-white/95 backdrop-blur-sm border-b border-[#E5E5E5] pt-14">
+    <div class="max-w-7xl mx-auto px-8">
+      <div class="flex items-center justify-between h-20">
+        <div class="flex items-center gap-x-2">
+          <span class="font-display text-3xl tracking-[-1.5px]">FLOR D'LUNE</span>
+        </div>
+
+        <div class="hidden md:flex items-center gap-x-10 text-sm tracking-[1.5px]">
+          <a href="#" class="nav-link" style="color:#E8A0BF">PLAYLIST</a>
+          <a href="#" class="nav-link" style="color:#E8A0BF">LIMITED RARE PIECES</a>
+          <a href="#" class="nav-link" style="color:#E8A0BF">GALLERY</a>
+          <a href="#" class="nav-link" style="color:#E8A0BF">GALLERY</a>
+          <a href="#" class="nav-link" style="color:#E8A0BF">PLAYLIST</a>
+        </div>
+
+        <a href="#" class="text-sm px-6 py-2.5 border border-[#111] hover:bg-[#111] hover:text-white transition">
+          BACK TO COLLECTION
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero with Moving Water Background -->
+  <div class="relative h-[620px] flex items-center justify-center overflow-hidden">
+    <!-- Subtle Gradient Overlay -->
+    <div class="absolute inset-0 overlay-gradient"></div>
+    
+    <!-- Branding Overlay -->
+    <div class="relative z-10 text-center px-6">
+      <div class="text-[#E8A0BF] text-xs tracking-[5px] mb-4"></div>
+      <h1 class="heading-serif text-7xl md:text-8xl tracking-[-3.5px] text-[#fff] leading-none mb-4">
+        CAPSULE 01
+      </h1>
+      <p class="text-lg text-[#444] max-w-md mx-auto">
+        Art is how we decorate Space, Music is how we decorate Time.
+      </p>
+    </div>
+    
+    <!-- Bottom navigation links -->
+    <div class="absolute bottom-14 left-0 right-0 z-20 px-8 max-w-7xl mx-auto flex justify-between text-sm tracking-[3px]">
+      <a href="#products" class="text-[#E8A0BF] hover:underline transition">THE DREAM</a>
+      <a href="#playlist" class="text-[#E8A0BF] hover:underline transition">PLAYLIST</a>
+    </div>
+    <!-- Subtle bottom fade -->
+    <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#F8F8F5] to-transparent"></div>
+  </div>
+
+  <!-- Products Section -->
+  <div id="products" class="max-w-7xl mx-auto px-8 pt-16 pb-24">
+    
+    <!-- Top Row: 3 Products -->
+    <div class="mb-16">
+      <div class="flex items-end justify-between mb-8 px-1">
+        <div>
+          <div class="text-[#E8A0BF] text-xs tracking-[3px]">CAPSULE 01</div>
+          <h2 class="heading-serif text-4xl tracking-[-1px]" style="color:#111">summer '26</h2>
+        </div>
+        <a href="#" class="text-sm tracking-[1.5px] hover:text-[#E8A0BF]">VIEW ALL →</a>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        <!-- Product 1 -->
+        <div class="product-card bg-white/85 backdrop-blur-sm border border-white/60 overflow-hidden group">
+          <div class="aspect-[16/10] bg-[#F4F1ED] relative">
+            <img src="/images/products/tshirts/48950EC9-DA29-4E19-AC83-52DC09E926C3.JPG" class="w-full h-full object-cover group-hover:scale-[1.04] transition duration-700" alt="Signature Bonsai Tee">
+          </div>
+          <div class="p-6">
+            <div class="flex justify-between">
+              <div>
+                <div class="font-medium">Signature Bonsai Tee</div>
+                <div class="text-sm text-[#fff]">Cherry Blossom • White</div>
+              </div>
+              <div class="font-medium">€78</div>
+            </div>
+            <button class="mt-6 w-full py-3 text-sm border border-[#111] hover:bg-[#111] hover:text-white transition">ADD TO CART</button>
+          </div>
+        </div>
+
+        <!-- Product 2 -->
+        <div class="product-card bg-white/85 backdrop-blur-sm border border-white/60 overflow-hidden group">
+          <div class="aspect-[16/10] bg-[#F4F1ED] relative">
+            <img src="/images/products/caps/IMG_3089.JPG" class="w-full h-full object-cover group-hover:scale-[1.04] transition duration-700" alt="Moon Ritual Jacket">
+          </div>
+          <div class="p-6">
+            <div class="flex justify-between">
+              <div>
+                <div class="font-medium">Moon Ritual Jacket</div>
+                <div class="text-sm text-[#fff]">Salvator Mundi • Black</div>
+              </div>
+              <div class="font-medium">€210</div>
+            </div>
+            <button class="mt-6 w-full py-3 text-sm border border-[#111] hover:bg-[#111] hover:text-white transition">ADD TO CART</button>
+          </div>
+        </div>
+
+        <!-- Product 3 -->
+        <div class="product-card bg-white/85 backdrop-blur-sm border border-white/60 overflow-hidden group">
+          <div class="aspect-[16/10] bg-[#F4F1ED] relative">
+            <img src="/images/products/socks/IMG_3190.JPG" class="w-full h-full object-cover group-hover:scale-[1.04] transition duration-700" alt="UFO Corduroy Cap">
+            <div class="absolute top-4 right-4 bg-white/90 px-3 py-1 text-xs tracking-widest">NEW</div>
+          </div>
+          <div class="p-6">
+            <div class="flex justify-between">
+              <div>
+                <div class="font-medium">UFO Corduroy Cap</div>
+                <div class="text-sm text-[#fff]"></div>
+              </div>
+              <div class="font-medium">€65</div>
+            </div>
+            <button class="mt-6 w-full py-3 text-sm border border-[#111] hover:bg-[#111] hover:text-white transition">ADD TO CART</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Bottom Row: 3 Products -->
+    <div>
+      <div class="flex items-end justify-between mb-8 px-1">
+        <div>
+          <div class="text-[#E8A0BF] text-xs tracking-[3px]">CAPSULE 01</div>
+          <h2 class="heading-serif text-4xl tracking-[-1px]" style="color:#111">summer '26</h2>
+        </div>
+        <a href="#" class="text-sm tracking-[1.5px] hover:text-[#E8A0BF]">VIEW ALL →</a>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        <!-- Product 4 -->
+        <div class="product-card bg-white/85 backdrop-blur-sm border border-white/60 overflow-hidden group">
+          <div class="aspect-[16/10] bg-[#F4F1ED] relative">
+            <img src="/images/products/pins/pin01.jpg" class="w-full h-full object-cover group-hover:scale-[1.04] transition duration-700" alt="Flor D'Lune's Angelito ~ Pin">
+          </div>
+          <div class="p-6">
+            <div class="flex justify-between">
+              <div>
+                <div><div class="text-xs text-[#E8A0BF]">Flor D'Lune</div><div class="font-medium">Angelito ~ Pin</div></div>
+                <div class="text-sm text-[#fff]"></div>
+              </div>
+              <div class="font-medium">€145</div>
+            </div>
+            <button class="mt-6 w-full py-3 text-sm border border-[#111] hover:bg-[#111] hover:text-white transition">ADD TO CART</button>
+          </div>
+        </div>
+
+        <!-- Product 5 -->
+        <div class="product-card bg-white/85 backdrop-blur-sm border border-white/60 overflow-hidden group">
+          <div class="aspect-[16/10] bg-[#F4F1ED] relative">
+            <img src="/images/products/other/IMG_3025.JPG" class="w-full h-full object-cover group-hover:scale-[1.04] transition duration-700" alt="Blossom Wool Coat">
+          </div>
+          <div class="p-6">
+            <div class="flex justify-between">
+              <div>
+                <div class="font-medium">Blossom Wool Coat</div>
+                <div class="text-sm text-[#fff]"></div>
+              </div>
+              <div class="font-medium">€285</div>
+            </div>
+            <button class="mt-6 w-full py-3 text-sm border border-[#111] hover:bg-[#111] hover:text-white transition">ADD TO CART</button>
+          </div>
+        </div>
+
+        <!-- Product 6 -->
+        <div class="product-card bg-white/85 backdrop-blur-sm border border-white/60 overflow-hidden group">
+          <div class="aspect-[16/10] bg-[#F4F1ED] relative">
+            <img src="/images/products/pins/pin02.jpg" class="w-full h-full object-cover group-hover:scale-[1.04] transition duration-700" alt="Sacred Silk Shirt">
+          </div>
+          <div class="p-6">
+            <div class="flex justify-between">
+              <div>
+                <div class="font-medium">Sacred Silk Shirt</div>
+                <div class="text-sm text-[#fff]"></div>
+              </div>
+              <div class="font-medium">€135</div>
+            </div>
+            <button class="mt-6 w-full py-3 text-sm border border-[#111] hover:bg-[#111] hover:text-white transition">ADD TO CART</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <footer class="border-t py-10 text-xs text-[#fff] px-8">
+    <div class="max-w-7xl mx-auto flex justify-between">
+      <div>© FLOR D'LUNE 2026 — AMSTERDAM</div>
+      <div class="flex gap-x-8">
+        <a href="#">CARE INSTRUCTIONS</a>
+        <a href="#">SHIPPING</a>
+        <a href="#">RETURNS</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
+<style>
+  body::before,
+  body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 180px;
+    z-index: 1;
+    pointer-events: none;
+  }
+  
+  body::before {
+    left: 0;
+    background: linear-gradient(to right, rgba(248,248,245,0.75), transparent);
+  }
+  
+  body::after {
+    right: 0;
+    background: linear-gradient(to left, rgba(248,248,245,0.75), transparent);
+  }
+</style>

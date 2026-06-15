@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flor D'Lune Sports • Power Rangers Morph Previews</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@500;600&amp;display=swap');
+    
+    :root {
+      --flor-black: #0A0A0F;
+      --flor-pink: #E8A0BF;
+      --flor-gold: #C5A26F;
+    }
+    
+    body {
+      font-family: 'Inter', system_ui, sans-serif;
+    }
+    
+    .font-display {
+      font-family: 'Space Grotesk', 'Inter', system_ui, sans-serif;
+      font-weight: 600;
+      letter-spacing: -0.025em;
+    }
+
+    .video-container {
+      background: #000;
+      border: 1px solid rgba(255,255,255,0.08);
+      overflow: hidden;
+      box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.4);
+    }
+
+    .video-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 380px;
+      margin: 0 auto;
+      aspect-ratio: 9 / 16;
+      background: #000;
+    }
+
+    .video-wrapper video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .section-header {
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    .brand-pink {
+      color: #E8A0BF;
+    }
+
+    .video-label {
+      font-size: 13px;
+      letter-spacing: 1px;
+    }
+
+    .meta {
+      font-size: 12px;
+      color: #888;
+    }
+
+    video::-webkit-media-controls {
+      background: rgba(0,0,0,0.6);
+    }
+
+    .cosmic-bg {
+      background: linear-gradient(145deg, #0A0A0F 0%, #111113 100%);
+    }
+  </style>
+</head>
+<body class="bg-[#0A0A0F] text-[#F8F8F5] min-h-screen pb-20">
+  <!-- Header -->
+  <div class="border-b border-white/10 bg-black/60 backdrop-blur sticky top-0 z-50">
+    <div class="max-w-5xl mx-auto px-6 py-5 flex items-center justify-between">
+      <div>
+        <div class="flex items-center gap-3">
+          <div class="text-[#E8A0BF] font-display text-2xl tracking-[-1px]">FLOR D'LUNE</div>
+          <div class="text-[10px] px-2 py-0.5 rounded border border-white/20 text-white/60 tracking-[2px]">SPORTS</div>
+        </div>
+        <div class="text-[10px] text-white/40 tracking-[3px] mt-0.5">POWER RANGERS MORPH SERIES</div>
+      </div>
+      <div class="text-right">
+        <div class="text-xs text-white/60">World Cup 2026 • IShowSpeed</div>
+        <div class="text-[10px] text-[#E8A0BF]">v1 • v2 • v3</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="max-w-5xl mx-auto px-6 pt-10">
+    <!-- Intro -->
+    <div class="max-w-2xl">
+      <div class="section-header text-[#E8A0BF] mb-2">DIRECTOR CUTS — FIRST BATCH</div>
+      <h1 class="font-display text-5xl md:text-6xl tracking-[-2.5px] leading-none mb-4">
+        Power Rangers<br>Morph Intros
+      </h1>
+      <p class="text-white/70 text-lg">
+        9:16 cinematic vertical videos (10s). Each with a different viral meme dance, 
+        perfectly synced to the <span class="text-[#E8A0BF]">Speed World Cup (Champions)</span> beat.
+      </p>
+      <div class="mt-3 text-xs text-white/50 flex items-center gap-2">
+        <div class="h-px w-8 bg-white/20"></div>
+        STYLE LOCKED TO YOUR REFERENCE VIDEO
+      </div>
+    </div>
+
+    <!-- Reference -->
+    <div class="mt-12">
+      <div class="flex items-center justify-between mb-3 px-1">
+        <div>
+          <div class="text-[#E8A0BF] text-xs tracking-[3px]">STYLE REFERENCE</div>
+          <div class="text-xl font-medium">Uploaded reference video</div>
+        </div>
+        <a href="/videos/refs/flor-dlune-power-rangers-ref-83aa7e67.mp4" 
+           class="text-xs border border-white/30 hover:border-white/60 px-4 py-1.5 rounded-full transition"
+           target="_blank">OPEN IN NEW TAB</a>
+      </div>
+      
+      <div class="video-container rounded-3xl p-2 max-w-[380px]">
+        <div class="video-wrapper rounded-2xl overflow-hidden">
+          <video controls playsinline class="bg-black" style="background:#000">
+            <source src="/videos/refs/flor-dlune-power-rangers-ref-83aa7e67.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <div class="text-[10px] text-white/40 mt-2 px-1">Use this as the visual bible (grain, grading, light, rhythm)</div>
+    </div>
+
+    <!-- Videos -->
+    <div class="mt-16">
+      <div class="text-[#E8A0BF] text-xs tracking-[3px] mb-6 px-1">GENERATED — v1, v2, v3</div>
+      
+      <div class="grid md:grid-cols-3 gap-8">
+        
+        <!-- v01 -->
+        <div>
+          <div class="mb-3 px-1">
+            <div class="flex items-center gap-2">
+              <div class="text-4xl font-display text-white/90 tracking-[-1.5px]">01</div>
+              <div>
+                <div class="font-medium">Solo Ranger</div>
+                <div class="text-[#E8A0BF] text-sm">Renegade dance</div>
+              </div>
+            </div>
+            <div class="mt-1 text-xs text-white/60">Runs home → morphs in hallway while dancing</div>
+          </div>
+          
+          <div class="video-container rounded-3xl p-2">
+            <div class="video-wrapper rounded-2xl overflow-hidden">
+              <video controls playsinline loop muted class="bg-black" style="background:#000">
+                <source src="/videos/flor-dlune-sports-morph-v01-solo-renegade.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+          
+          <div class="px-1 mt-3 text-xs space-y-0.5 meta">
+            <div><span class="text-white/40">Dance:</span> Renegade (sharp arms + swag)</div>
+            <div><span class="text-white/40">Morph:</span> Shirt pull + ranger armor off</div>
+            <div><span class="text-white/40">File:</span> v01-solo-renegade.mp4</div>
+          </div>
+        </div>
+
+        <!-- v02 -->
+        <div>
+          <div class="mb-3 px-1">
+            <div class="flex items-center gap-2">
+              <div class="text-4xl font-display text-white/90 tracking-[-1.5px]">02</div>
+              <div>
+                <div class="font-medium">Two Rangers</div>
+                <div class="text-[#E8A0BF] text-sm">Say So dance</div>
+              </div>
+            </div>
+            <div class="mt-1 text-xs text-white/60">Synchronized at the Football HQ door</div>
+          </div>
+          
+          <div class="video-container rounded-3xl p-2">
+            <div class="video-wrapper rounded-2xl overflow-hidden">
+              <video controls playsinline loop muted class="bg-black" style="background:#000">
+                <source src="/videos/flor-dlune-sports-morph-v02-duo-sayso.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+          
+          <div class="px-1 mt-3 text-xs space-y-0.5 meta">
+            <div><span class="text-white/40">Dance:</span> Say So (body rolls + mirror sync)</div>
+            <div><span class="text-white/40">Morph:</span> Duo kit change at entrance</div>
+            <div><span class="text-white/40">File:</span> v02-duo-sayso.mp4</div>
+          </div>
+        </div>
+
+        <!-- v03 -->
+        <div>
+          <div class="mb-3 px-1">
+            <div class="flex items-center gap-2">
+              <div class="text-4xl font-display text-white/90 tracking-[-1.5px]">03</div>
+              <div>
+                <div class="font-medium">Group of 4</div>
+                <div class="text-[#E8A0BF] text-sm">Wop dance</div>
+              </div>
+            </div>
+            <div class="mt-1 text-xs text-white/60">Dark morph chamber with light rays</div>
+          </div>
+          
+          <div class="video-container rounded-3xl p-2">
+            <div class="video-wrapper rounded-2xl overflow-hidden">
+              <video controls playsinline loop muted class="bg-black" style="background:#000">
+                <source src="/videos/flor-dlune-sports-morph-v03-group-wop.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+          
+          <div class="px-1 mt-3 text-xs space-y-0.5 meta">
+            <div><span class="text-white/40">Dance:</span> Wop (group waves + shoulders)</div>
+            <div><span class="text-white/40">Morph:</span> Collective ritual morph</div>
+            <div><span class="text-white/40">File:</span> v03-group-wop.mp4</div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+
+    <!-- Technical info -->
+    <div class="mt-16 border-t border-white/10 pt-8 text-xs text-white/50 max-w-3xl">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-y-4">
+        <div>
+          <div class="text-white/40">ASPECT RATIO</div>
+          <div class="text-white">9:16 (vertical)</div>
+        </div>
+        <div>
+          <div class="text-white/40">DURATION</div>
+          <div class="text-white">10 seconds each</div>
+        </div>
+        <div>
+          <div class="text-white/40">RESOLUTION</div>
+          <div class="text-white">720p (cinematic)</div>
+        </div>
+        <div>
+          <div class="text-white/40">STYLE</div>
+          <div class="text-white">Film grain + #E8A0BF + cosmic purple</div>
+        </div>
+      </div>
+      
+      <div class="mt-6 text-[10px]">
+        All motion locked to IShowSpeed – World Cup (Champions). <br>
+        Ready for Instagram Reels / TikTok / YouTube Shorts / website hero.
+      </div>
+    </div>
+
+    <!-- Footer note -->
+    <div class="mt-12 text-center text-[10px] text-white/40">
+      Direct files also available in <span class="font-mono text-white/50">/public/videos/</span><br>
+      Waiting for feedback before v4–v6.
+    </div>
+  </div>
+</body>
+</html>
