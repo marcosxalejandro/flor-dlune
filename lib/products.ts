@@ -15,11 +15,16 @@ export interface Product {
   image: string;
   category: ProductCategory;
   supplier: 'gelato' | 'printful';
-  supplierSku?: string;
+  /** Gelato productUid or Printful sync variant ID — fill after supplier setup */
+  supplierProductId?: string;
   variants: ProductVariant[];
   launchReady: boolean;
 }
 
+/**
+ * Edit product names, prices, and images here.
+ * After Gelato/Printful setup, add supplierProductId per product.
+ */
 export const LAUNCH_PRODUCTS: Product[] = [
   {
     id: 'signature-bonsai-tee',

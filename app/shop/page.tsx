@@ -68,15 +68,55 @@ export default function ShopPage() {
   }
 
   return (
-    <div className="water-bg min-h-screen text-[#111]">
+    <div className="shop-page min-h-screen text-[#111]">
       <style jsx global>{`
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;500&display=swap');
-        .water-bg {
+        .shop-page {
+          position: relative;
+          background-color: #F8F8F5;
+          font-family: 'Inter', system-ui, sans-serif;
+          isolation: isolate;
+        }
+        .shop-page::before {
+          content: '';
+          position: fixed;
+          inset: 0;
+          z-index: -2;
           background-image: url('/background.jpg');
           background-size: cover;
-          background-position: center;
-          background-attachment: fixed;
-          font-family: 'Inter', system-ui, sans-serif;
+          background-position: center 30%;
+          background-repeat: no-repeat;
+        }
+        .shop-page::after {
+          content: '';
+          position: fixed;
+          inset: 0;
+          z-index: -1;
+          background: linear-gradient(
+            180deg,
+            rgba(248, 248, 245, 0.55) 0%,
+            rgba(248, 248, 245, 0.72) 45%,
+            rgba(248, 248, 245, 0.88) 100%
+          );
+          pointer-events: none;
+        }
+        @media (max-width: 768px) {
+          .shop-page::before {
+            position: absolute;
+            background-size: 120% auto;
+            background-position: center 18%;
+            filter: blur(0.5px);
+            transform: scale(1.02);
+          }
+          .shop-page::after {
+            position: absolute;
+            background: linear-gradient(
+              180deg,
+              rgba(248, 248, 245, 0.82) 0%,
+              rgba(248, 248, 245, 0.9) 50%,
+              rgba(248, 248, 245, 0.95) 100%
+            );
+          }
         }
         .heading-serif {
           font-family: 'Playfair Display', Georgia, serif;
