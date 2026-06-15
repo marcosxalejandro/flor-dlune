@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import { FLOR_DLUNE_PLAY_EVENT } from '@/components/MusicPlayerSimple';
 
 interface MusicConsentProps {
   onConsent: () => void;
@@ -11,16 +12,21 @@ export default function MusicConsent({ onConsent }: MusicConsentProps) {
 
   useEffect(() => {
     const hasConsented = localStorage.getItem('flor_dlune_music_consent');
-    if (!hasConsented) {
-      const timer = setTimeout(() => setShow(true), 1200);
-      return () => clearTimeout(timer);
+    if (hasConsented) {
+      onConsent();
+      window.dispatchEvent(new CustomEvent(FLOR_DLUNE_PLAY_EVENT));
+      return;
     }
-  }, []);
+
+    const timer = setTimeout(() => setShow(true), 1200);
+    return () => clearTimeout(timer);
+  }, [onConsent]);
 
   const handleAccept = () => {
     localStorage.setItem('flor_dlune_music_consent', 'true');
     setShow(false);
     onConsent();
+    window.dispatchEvent(new CustomEvent(FLOR_DLUNE_PLAY_EVENT));
   };
 
   if (!show) return null;

@@ -12,6 +12,7 @@ export default function FlorDLuneLanding() {
   return (
     <div className="min-h-screen bg-[#0A0A0F] text-[#F8F8F5] overflow-x-hidden">
       <MusicPlayerSimple />
+      <MusicConsent onConsent={handleConsent} />
       {/* NEW MAIN ENTRY POINT — Choice between two worlds */}
       <section 
         className="relative min-h-[100dvh] flex flex-col items-center justify-center px-6 text-center"
