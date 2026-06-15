@@ -1,9 +1,9 @@
+# Netlify + Next.js 16 plugin keeps failing for this project.
+# Use Render.com instead (free, no credit card) — see render.yaml
+# If you still use Netlify: leave Publish directory EMPTY in dashboard.
+
 [build]
   command = "npm run build"
 
 [build.environment]
   NODE_VERSION = "20"
-  NPM_FLAGS = "--legacy-peer-deps"
-
-[[plugins]]
-  package = "@netlify/plugin-nextjs"
