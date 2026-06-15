@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import MusicConsent from '@/components/MusicConsent';
+import MobileAudioDock from '@/components/MobileAudioDock';
 import MusicPlayerSimple from '@/components/MusicPlayerSimple';
 import CosmicHero3D from '@/components/CosmicHero3D';
 import PlaylistSection from '@/components/PlaylistSection';
@@ -12,6 +13,7 @@ export default function FlorDLuneLanding() {
   return (
     <div className="min-h-screen bg-[#0A0A0F] text-[#F8F8F5] overflow-x-hidden">
       <MusicPlayerSimple />
+      <MobileAudioDock />
       <MusicConsent onConsent={handleConsent} />
       {/* NEW MAIN ENTRY POINT — Choice between two worlds */}
       <section 
@@ -178,10 +180,10 @@ export default function FlorDLuneLanding() {
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
               {[
-                { name: "Signature Bonsai Tee — White", price: "€78", color: "White" },
-                { name: "Signature Bonsai Tee — Forest", price: "€78", color: "Forest Green" },
-                { name: "Signature Bonsai Tee — Black", price: "€78", color: "Black" },
-                { name: "Signature Bonsai Tee — Cobalt", price: "€78", color: "Cobalt Blue" },
+                { name: "*concepts materializing from the aether*", price: "€78", color: "White" },
+                { name: "*concepts materializing from the aether*", price: "€78", color: "Forest Green" },
+                { name: "*concepts materializing from the aether*", price: "€78", color: "Black" },
+                { name: "*concepts materializing from the aether*", price: "€78", color: "Cobalt Blue" },
               ].map((item, i) => (
                 <a 
                   key={i}

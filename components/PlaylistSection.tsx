@@ -1,8 +1,14 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { Play, Pause, SkipBack, SkipForward, ExternalLink } from 'lucide-react';
+import {
+  isMobileBrowser,
+  offscreenMediaStyle,
+  pauseTrackNow,
+  playTrackNow,
+} from '@/lib/youtube-audio';
 
 interface Track {
   id: number;
@@ -78,12 +84,14 @@ export default function PlaylistSection({ immersive = false }: PlaylistSectionPr
   const [currentTrackIndex, setCurrentTrackIndex] = useState(0);
   const [lastInteraction, setLastInteraction] = useState(Date.now());
   const [ytApiReady, setYtApiReady] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   // Refs for YouTube IFrame API players (two players to enable audio crossfading via volume)
   const playerARef = useRef<any>(null);
   const playerBRef = useRef<any>(null);
   const activePlayerRef = useRef<'a' | 'b'>('a');
   const currentVideoIdRef = useRef<string | null>(null);
+
 
   const currentTrack = playlistTracks[currentTrackIndex];
   const bgColor = currentTrack.backgroundColor;
@@ -113,10 +121,29 @@ export default function PlaylistSection({ immersive = false }: PlaylistSectionPr
     return () => clearInterval(interval);
   }, [lastInteraction, isPlaying]);  // Re-setup when interaction or play-state changes
 
+  useEffect(() => {
+    setIsMobile(isMobileBrowser());
+  }, []);
+
+  const playMobileTrack = useCallback((youtubeId: string) => {
+    if (playTrackNow(youtubeId)) {
+      currentVideoIdRef.current = youtubeId;
+      setIsPlaying(true);
+    }
+  }, []);
+
+  const pauseMobileTrack = useCallback(() => {
+    pauseTrackNow();
+    setIsPlaying(false);
+  }, []);
+
   // === YOUTUBE IFRAME API LOADER (for volume-controlled audio crossfades) ===
   // We use the official API (instead of bare iframe src) only to support smooth 1-1.5s audio volume crossfades
   // between tracks. Two players allow overlapping audio during transition.
+  // On mobile we use a direct embed iframe (iOS blocks 0×0 / display:none API players).
   useEffect(() => {
+    if (isMobileBrowser()) return;
+
     const w = window as any;
     if (w.YT && w.YT.Player) {
       setYtApiReady(true);
@@ -143,19 +170,20 @@ export default function PlaylistSection({ immersive = false }: PlaylistSectionPr
       modestbranding: 1,
       rel: 0,
       iv_load_policy: 3,
+      playsinline: 1,
     };
     if (!playerARef.current) {
       playerARef.current = new YT.Player('yt-player-a', {
-        height: '0',
-        width: '0',
+        height: '1',
+        width: '1',
         playerVars,
         events: { onReady: () => {} },
       });
     }
     if (!playerBRef.current) {
       playerBRef.current = new YT.Player('yt-player-b', {
-        height: '0',
-        width: '0',
+        height: '1',
+        width: '1',
         playerVars,
         events: { onReady: () => {} },
       });
@@ -214,6 +242,11 @@ export default function PlaylistSection({ immersive = false }: PlaylistSectionPr
       return;
     }
 
+    if (isMobile) {
+      playMobileTrack(track.youtubeId);
+      return;
+    }
+
     const w = window as any;
     if (!ytApiReady || !w.YT) {
       // API not ready yet — still update visuals; audio will be silent until ready
@@ -255,9 +288,20 @@ export default function PlaylistSection({ immersive = false }: PlaylistSectionPr
 
   const togglePlay = () => {
     registerInteraction();
-    const player = getCurrentPlayer();
     const track = playlistTracks[currentTrackIndex];
-    if (!player || !track?.youtubeId || typeof player.loadVideoById !== 'function') return;
+    if (!track?.youtubeId) return;
+
+    if (isMobile) {
+      if (!isPlaying) {
+        playMobileTrack(track.youtubeId);
+      } else {
+        pauseMobileTrack();
+      }
+      return;
+    }
+
+    const player = getCurrentPlayer();
+    if (!player || typeof player.loadVideoById !== 'function') return;
 
     if (!isPlaying) {
       // Resume or first start for current visual track
@@ -282,6 +326,20 @@ export default function PlaylistSection({ immersive = false }: PlaylistSectionPr
 
   // Floating title clicks: always activate + play (crossfades audio if something was playing)
   const selectAndPlay = (index: number) => {
+    registerInteraction();
+    if (index === currentTrackIndex) {
+      if (!isPlaying) {
+        const track = playlistTracks[index];
+        if (track?.youtubeId) {
+          if (isMobile) {
+            playMobileTrack(track.youtubeId);
+          } else {
+            togglePlay();
+          }
+        }
+      }
+      return;
+    }
     const wasPlaying = isPlaying;
     switchToTrack(index, wasPlaying);
   };
@@ -487,8 +545,9 @@ export default function PlaylistSection({ immersive = false }: PlaylistSectionPr
           return (
             <motion.button
               key={track.id}
+              type="button"
               onClick={() => selectAndPlay(index)}
-              className="absolute select-none cursor-pointer focus:outline-none"
+              className="absolute touch-manipulation cursor-pointer select-none focus:outline-none"
               style={{
                 left,
                 top,
@@ -620,7 +679,7 @@ export default function PlaylistSection({ immersive = false }: PlaylistSectionPr
       {immersive && (
         <>
           {/* Minimal floating playback controls (bottom center, very subtle) */}
-          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-50 flex items-center gap-5 pointer-events-auto">
+          <div className="absolute bottom-24 left-1/2 -translate-x-1/2 z-50 flex items-center gap-5 pointer-events-auto md:bottom-8">
             <button
               onClick={goPrev}
               className="p-2 text-white/40 hover:text-white/90 transition"
@@ -630,8 +689,9 @@ export default function PlaylistSection({ immersive = false }: PlaylistSectionPr
             </button>
 
             <motion.button
+              type="button"
               onClick={togglePlay}
-              className="w-11 h-11 rounded-full flex items-center justify-center transition active:scale-[0.96]"
+              className="h-11 w-11 touch-manipulation rounded-full flex items-center justify-center transition active:scale-[0.96]"
               style={{ color: '#0A0A0F' }}
               animate={{ backgroundColor: accent }}
               transition={COLOR_TRANSITION}
@@ -665,10 +725,19 @@ export default function PlaylistSection({ immersive = false }: PlaylistSectionPr
       <div className="absolute top-6 right-6 z-40 text-[10px] tracking-[2.5px] text-white/30 pointer-events-none hidden lg:block">
         CLICK THE FLOATING TITLES
       </div>
+      {isMobile && !isPlaying && (
+        <div className="absolute top-6 left-6 right-6 z-40 text-center text-[10px] tracking-[2px] text-amber-200/70 pointer-events-none md:hidden">
+          TAP A TITLE OR PLAY TO START SOUND
+        </div>
+      )}
 
-      {/* Hidden YouTube player containers (IFrame API players for crossfade volume control) */}
-      <div id="yt-player-a" className="hidden" />
-      <div id="yt-player-b" className="hidden" />
+      {/* Off-screen YouTube players — hidden/display:none breaks audio on iOS Safari */}
+      {!isMobile && (
+        <>
+          <div id="yt-player-a" style={offscreenMediaStyle} aria-hidden="true" />
+          <div id="yt-player-b" style={offscreenMediaStyle} aria-hidden="true" />
+        </>
+      )}
     </div>
   );
 }
