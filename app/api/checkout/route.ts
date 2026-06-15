@@ -43,7 +43,13 @@ export async function POST(req: NextRequest) {
           currency: 'eur',
           product_data: {
             name: product.name,
-            description: `${product.subtitle} — ${variant.label}`,
+            description: [
+              product.brandLabel,
+              product.subtitle,
+              variant.label,
+            ]
+              .filter(Boolean)
+              .join(' • '),
             images: product.image.startsWith('http')
               ? [product.image]
               : [`${process.env.NEXT_PUBLIC_SITE_URL ?? 'https://flordlune.com'}${product.image}`],

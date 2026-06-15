@@ -33,7 +33,14 @@ export default function ProductCard({ product, onAddToCart }: ProductCardProps) 
         <div className="flex justify-between items-start gap-4">
           <div>
             <div className="font-medium">{product.name}</div>
-            <div className="text-sm text-[#666]">{product.subtitle}</div>
+            {product.brandLabel && (
+              <div className="text-xs text-[#E8A0BF] tracking-[2px] uppercase mt-0.5">
+                {product.brandLabel}
+              </div>
+            )}
+            {product.subtitle && (
+              <div className="text-sm text-[#666]">{product.subtitle}</div>
+            )}
           </div>
           <div className="font-medium whitespace-nowrap">{product.displayPrice}</div>
         </div>

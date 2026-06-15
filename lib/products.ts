@@ -9,6 +9,8 @@ export interface ProductVariant {
 export interface Product {
   id: string;
   name: string;
+  /** Pink caps brand line shown under the product title */
+  brandLabel?: string;
   subtitle: string;
   price: number; // EUR cents
   displayPrice: string;
@@ -28,8 +30,9 @@ export interface Product {
 export const LAUNCH_PRODUCTS: Product[] = [
   {
     id: 'signature-bonsai-tee',
-    name: "Flor D'Lune Capsule 01 Tee",
-    subtitle: 'Cherry Blossom • White',
+    name: 'Capsule 01 Tee',
+    brandLabel: "FLOR D'LUNE",
+    subtitle: 'White',
     price: 6200,
     displayPrice: '€62',
     image: '/images/products/tshirts/48950EC9-DA29-4E19-AC83-52DC09E926C3.JPG',
@@ -45,8 +48,9 @@ export const LAUNCH_PRODUCTS: Product[] = [
   },
   {
     id: 'ufo-corduroy-cap',
-    name: "Flor D'Lune Capsule 01 Cap",
-    subtitle: 'Salvator Mundi • Black',
+    name: 'Salvator Capsule 01 Salvator Mundi Cap',
+    brandLabel: "FLOR D'LUNE",
+    subtitle: 'Black',
     price: 3500,
     displayPrice: '€35',
     image: '/images/products/caps/IMG_3089.JPG',
@@ -57,8 +61,9 @@ export const LAUNCH_PRODUCTS: Product[] = [
   },
   {
     id: 'cherry-blossom-socks',
-    name: "Flor D'Lune Capsule 01 Socks",
-    subtitle: 'Flor D\'Lune • Premium Cotton',
+    name: 'Capsule 01 Socks',
+    brandLabel: "FLOR D'LUNE",
+    subtitle: 'Premium Cotton',
     price: 2500,
     displayPrice: '€25',
     image: '/images/products/socks/IMG_3190.JPG',
