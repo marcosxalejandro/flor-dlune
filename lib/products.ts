@@ -12,9 +12,6 @@ export interface ProductVariant {
   embroideryThreadColors?: string[];
 }
 
-const SOLS_EMBROIDERY_UID = (size: string, color: 'white' | 'deep-black') =>
-  `apparel_product_gca_t-shirt_gsc_oversized_gcu_unisex_gqa_organic_gsi_${size}_gco_${color}_gpr_chstl-emb_sols_03996`;
-
 export interface Product {
   id: string;
   name: string;
@@ -24,6 +21,8 @@ export interface Product {
   price: number; // EUR cents
   displayPrice: string;
   image: string;
+  /** Optional extra views, e.g. front & back of the same garment */
+  images?: string[];
   category: ProductCategory;
   supplier: 'gelato' | 'printful';
   /** Gelato productUid or Printful sync variant ID — fill after supplier setup */
@@ -67,6 +66,10 @@ export const LAUNCH_PRODUCTS: Product[] = [
     price: 6200,
     displayPrice: '€62',
     image: '/images/products/tshirts/capsule-02-tee-white.jpg',
+    images: [
+      '/images/products/tshirts/capsule-02-tee-white.jpg',
+      '/images/products/tshirts/capsule-02-tee-back.jpg',
+    ],
     category: 'shirt',
     supplier: 'gelato',
     gelatoFulfillment: 'dtg',
@@ -101,85 +104,7 @@ export const LAUNCH_PRODUCTS: Product[] = [
       },
     ],
     launchReady: true,
-  },
-  {
-    id: 'capsule-03-embroidered-tee',
-    name: 'Capsule 03 Tee',
-    brandLabel: "FLOR D'LUNE",
-    subtitle: 'Embroidered Logo · Left Chest · No Back Print',
-    price: 6800,
-    displayPrice: '€68',
-    image: '/images/products/tshirts/capsule-01-logo-tee-black.jpg',
-    category: 'shirt',
-    supplier: 'gelato',
-    gelatoFulfillment: 'embroidery',
-    variants: [
-      {
-        id: 's-white',
-        label: 'S · White',
-        size: 'S',
-        color: 'white',
-        gelatoProductUid: SOLS_EMBROIDERY_UID('s', 'white'),
-        embroideryThreadColors: ['#000000'],
-      },
-      {
-        id: 'm-white',
-        label: 'M · White',
-        size: 'M',
-        color: 'white',
-        gelatoProductUid: SOLS_EMBROIDERY_UID('m', 'white'),
-        embroideryThreadColors: ['#000000'],
-      },
-      {
-        id: 'l-white',
-        label: 'L · White',
-        size: 'L',
-        color: 'white',
-        gelatoProductUid: SOLS_EMBROIDERY_UID('l', 'white'),
-        embroideryThreadColors: ['#000000'],
-      },
-      {
-        id: 'xl-white',
-        label: 'XL · White',
-        size: 'XL',
-        color: 'white',
-        gelatoProductUid: SOLS_EMBROIDERY_UID('xl', 'white'),
-        embroideryThreadColors: ['#000000'],
-      },
-      {
-        id: 's-black',
-        label: 'S · Deep Black',
-        size: 'S',
-        color: 'deep-black',
-        gelatoProductUid: SOLS_EMBROIDERY_UID('s', 'deep-black'),
-        embroideryThreadColors: ['#ffffff'],
-      },
-      {
-        id: 'm-black',
-        label: 'M · Deep Black',
-        size: 'M',
-        color: 'deep-black',
-        gelatoProductUid: SOLS_EMBROIDERY_UID('m', 'deep-black'),
-        embroideryThreadColors: ['#ffffff'],
-      },
-      {
-        id: 'l-black',
-        label: 'L · Deep Black',
-        size: 'L',
-        color: 'deep-black',
-        gelatoProductUid: SOLS_EMBROIDERY_UID('l', 'deep-black'),
-        embroideryThreadColors: ['#ffffff'],
-      },
-      {
-        id: 'xl-black',
-        label: 'XL · Deep Black',
-        size: 'XL',
-        color: 'deep-black',
-        gelatoProductUid: SOLS_EMBROIDERY_UID('xl', 'deep-black'),
-        embroideryThreadColors: ['#ffffff'],
-      },
-    ],
-    launchReady: true,
+    soldOut: true,
   },
   {
     id: 'ufo-corduroy-cap',

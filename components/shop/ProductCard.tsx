@@ -16,11 +16,28 @@ export default function ProductCard({ product, onAddToCart }: ProductCardProps) 
   return (
     <div className={`product-card bg-white/85 backdrop-blur-sm border border-white/60 overflow-hidden group ${disabled ? 'opacity-60' : ''}`}>
       <div className="aspect-[16/10] bg-[#F4F1ED] relative overflow-hidden">
-        <img
-          src={product.image}
-          alt={product.name}
-          className="w-full h-full object-cover group-hover:scale-[1.04] transition duration-700"
-        />
+        {product.images && product.images.length > 1 ? (
+          <div className="grid grid-cols-2 h-full">
+            {product.images.map((src, index) => (
+              <div key={src} className="relative h-full overflow-hidden border-r border-white/40 last:border-r-0">
+                <img
+                  src={src}
+                  alt={`${product.name} ${index === 0 ? 'front' : 'back'}`}
+                  className="w-full h-full object-cover object-top group-hover:scale-[1.04] transition duration-700"
+                />
+                <span className="absolute bottom-2 left-2 bg-white/90 text-[#111] px-2 py-0.5 text-[10px] tracking-[2px]">
+                  {index === 0 ? 'FRONT' : 'BACK'}
+                </span>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <img
+            src={product.image}
+            alt={product.name}
+            className="w-full h-full object-cover group-hover:scale-[1.04] transition duration-700"
+          />
+        )}
         {soldOut && (
           <div className="absolute top-4 right-4 bg-[#111] text-white px-3 py-1 text-xs tracking-widest">
             SOLD OUT
