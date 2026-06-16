@@ -156,7 +156,7 @@ export const LAUNCH_PRODUCTS: Product[] = [
 export const COMING_SOON_PRODUCTS: Product[] = [
   {
     id: 'angelito-pin',
-    name: '*concepts materializing from the aether*',
+    name: 'Angelito ~ Pin',
     subtitle: 'Coming Soon',
     price: 14500,
     displayPrice: '€145',
@@ -180,7 +180,7 @@ export const COMING_SOON_PRODUCTS: Product[] = [
   },
   {
     id: 'sacred-silk-shirt',
-    name: '*concepts materializing from the aether*',
+    name: 'Sacred Silk Shirt',
     subtitle: 'Coming Soon',
     price: 13500,
     displayPrice: '€135',
