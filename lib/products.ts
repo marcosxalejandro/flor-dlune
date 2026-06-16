@@ -180,7 +180,7 @@ export const COMING_SOON_PRODUCTS: Product[] = [
   },
   {
     id: 'sacred-silk-shirt',
-    name: 'Sacred Silk Shirt',
+    name: 'Angelito ~ Mensajero',
     subtitle: 'Coming Soon',
     price: 13500,
     displayPrice: '€135',
