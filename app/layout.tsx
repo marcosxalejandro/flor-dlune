@@ -17,7 +17,7 @@ const geistMono = Geist_Mono({
 const dancingScript = Dancing_Script({
   variable: '--font-handwritten',
   subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
+  weight: ['400'],
 });
 
 export const metadata: Metadata = {

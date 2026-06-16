@@ -33,7 +33,7 @@ export default function FlorDLuneLanding() {
           </div>
           <div className="text-white/55 text-sm tracking-[5px] mb-12">-AMSTERDAM-</div>
 
-          <p className="font-handwritten text-white text-4xl md:text-[52px] leading-[1.25] max-w-[520px] mx-auto mb-14 font-medium">
+          <p className="font-handwritten text-white text-4xl md:text-[52px] leading-[1.25] max-w-[520px] mx-auto mb-14 font-normal">
             Amsterdam Based<br />
             Outta This World<br />
             Globally Yours

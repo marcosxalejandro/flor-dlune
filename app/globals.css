@@ -27,6 +27,7 @@ body {
 
 .font-handwritten {
   font-family: var(--font-handwritten, "Dancing Script", cursive);
+  font-weight: 400;
 }
 
 /* Premium button styles */
