@@ -10,7 +10,8 @@ interface ProductCardProps {
 
 export default function ProductCard({ product, onAddToCart }: ProductCardProps) {
   const [selectedVariant, setSelectedVariant] = useState(product.variants[0]?.id ?? '');
-  const disabled = !product.launchReady;
+  const soldOut = Boolean(product.soldOut);
+  const disabled = !product.launchReady || soldOut;
 
   return (
     <div className={`product-card bg-white/85 backdrop-blur-sm border border-white/60 overflow-hidden group ${disabled ? 'opacity-60' : ''}`}>
@@ -20,12 +21,17 @@ export default function ProductCard({ product, onAddToCart }: ProductCardProps) 
           alt={product.name}
           className="w-full h-full object-cover group-hover:scale-[1.04] transition duration-700"
         />
-        {!product.launchReady && (
+        {soldOut && (
+          <div className="absolute top-4 right-4 bg-[#111] text-white px-3 py-1 text-xs tracking-widest">
+            SOLD OUT
+          </div>
+        )}
+        {!soldOut && !product.launchReady && (
           <div className="absolute top-4 right-4 bg-[#111]/80 text-white px-3 py-1 text-xs tracking-widest">
             COMING SOON
           </div>
         )}
-        {product.launchReady && product.category === 'socks' && (
+        {!soldOut && product.launchReady && product.category === 'socks' && (
           <div className="absolute top-4 right-4 bg-white/90 px-3 py-1 text-xs tracking-widest">NEW</div>
         )}
       </div>
@@ -71,7 +77,7 @@ export default function ProductCard({ product, onAddToCart }: ProductCardProps) 
           onClick={() => onAddToCart(product.id, selectedVariant)}
           className="mt-6 w-full py-3 text-sm border border-[#111] hover:bg-[#111] hover:text-white transition disabled:opacity-40 disabled:cursor-not-allowed"
         >
-          {disabled ? 'BINNENKORT' : 'ADD TO CART'}
+          {soldOut ? 'SOLD OUT' : disabled ? 'BINNENKORT' : 'ADD TO CART'}
         </button>
       </div>
     </div>

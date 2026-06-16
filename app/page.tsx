@@ -238,7 +238,7 @@ export default function FlorDLuneLanding() {
         >
           <div className="absolute inset-0 bg-black/55" />
           <div className="relative z-10 text-center px-6">
-            <h3 className="font-display text-white text-5xl md:text-6xl tracking-[-2px] mb-8 leading-tight">St. Xanthias for gifted Children</h3>
+            <h3 className="font-display text-white text-5xl md:text-6xl tracking-[-2px] mb-8 leading-tight">St. Xanthias School for gifted Children</h3>
             <div className="flex gap-4 justify-center">
               <a href="#story" className="border border-white/70 px-8 py-3 text-sm tracking-[2px] hover:bg-white hover:text-black transition">PEAK A LIL SNEAK</a>
               <a href="#channels" className="border border-white/70 px-8 py-3 text-sm tracking-[2px] hover:bg-white hover:text-black transition">CHANNELS</a>
@@ -289,7 +289,7 @@ export default function FlorDLuneLanding() {
           <div className="relative z-10 text-center px-6 max-w-3xl">
             <div className="text-[#E8A0BF] text-xs tracking-[5px] mb-3">THE ARCHIVE</div>
             <h2 className="font-display text-white text-6xl md:text-7xl tracking-[-2.5px] leading-none mb-4">
-              Flor D&apos;Lune Art&apos;s&amp;History
+              Art&apos;s&amp;History
             </h2>
             <p className="text-white/85 text-lg md:text-xl max-w-lg mx-auto tracking-[-0.2px]">
               This whole brand is a temporal pincer
