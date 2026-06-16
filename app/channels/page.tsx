@@ -1,6 +1,9 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+
+const OWNER_UNLOCK_KEY = 'flor-dlune-channels-owner-unlock';
+const isPubliclyRevealed = process.env.NEXT_PUBLIC_CHANNELS_PUBLIC === 'true';
 
 const mainBrandChannel = {
   number: "00",
@@ -61,6 +64,20 @@ const channels = [
 ];
 
 export default function ChannelsPage() {
+  const [ownerUnlocked, setOwnerUnlocked] = useState(false);
+
+  useEffect(() => {
+    setOwnerUnlocked(localStorage.getItem(OWNER_UNLOCK_KEY) === 'true');
+  }, []);
+
+  const toggleOwnerView = () => {
+    const next = !ownerUnlocked;
+    localStorage.setItem(OWNER_UNLOCK_KEY, String(next));
+    setOwnerUnlocked(next);
+  };
+
+  const showTacticalChannels = isPubliclyRevealed || ownerUnlocked;
+
   return (
     <div className="min-h-screen bg-[#0A0A0F] text-[#F8F8F5]">
       {/* Visual header using the new Hourglass Temple image */}
@@ -80,7 +97,14 @@ export default function ChannelsPage() {
 
       <div className="max-w-5xl mx-auto px-8 pt-12 pb-20">
         <div className="mt-10 mb-12">
-          <div className="text-xs tracking-[3px] text-[var(--flor-blossom)] mb-2">THE ARCHIVE CONTINUES</div>
+          <button
+            type="button"
+            onClick={toggleOwnerView}
+            className="text-xs tracking-[3px] text-[var(--flor-blossom)] mb-2 hover:text-white transition cursor-pointer"
+            aria-label="Toggle private channel details"
+          >
+            THE ARCHIVE CONTINUES
+          </button>
         </div>
 
         {/* Official Main Brand Channel - Prominent */}
@@ -120,10 +144,13 @@ export default function ChannelsPage() {
           </div>
         </div>
 
-        {/* Fase 1 Tactical Channels */}
-        <div>
+        {/* Fase 1 Tactical Channels — blurred for visitors until owner unlocks or public reveal */}
+        <div className="relative">
           <div className="text-xs tracking-[3px] text-[var(--flor-blossom)] mb-4">FASE 1 TACTICAL CHANNELS</div>
-          <div className="space-y-6">
+          <div
+            className={`space-y-6 transition-all duration-500 ${showTacticalChannels ? '' : 'blur-md select-none pointer-events-none'}`}
+            aria-hidden={!showTacticalChannels}
+          >
             {channels.map((ch, index) => (
               <div key={index} className="border border-white/10 rounded-2xl p-8 hover:border-[var(--flor-blossom)] transition">
                 <div className="flex items-center gap-4 mb-4">
@@ -155,6 +182,11 @@ export default function ChannelsPage() {
               </div>
             ))}
           </div>
+          {!showTacticalChannels && (
+            <div className="absolute inset-0 flex items-center justify-center pt-8">
+              <p className="text-xs tracking-[3px] text-white/40 uppercase">Classified</p>
+            </div>
+          )}
         </div>
 
         <div className="mt-12 text-center text-xs text-[#666]">

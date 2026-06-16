@@ -483,9 +483,13 @@ export default function CosmicHero3D() {
       </Canvas>
 
       {/* Top label */}
-      <div className="absolute top-6 left-1/2 -translate-x-1/2 z-10 text-center pointer-events-none">
-        <div className="text-[10px] tracking-[4px] text-white/70 drop-shadow">ZENAX 3D</div>
-        <div className="font-display text-white text-4xl md:text-5xl tracking-[6px] drop-shadow-lg">PINK GRADIENT</div>
+      <div className="absolute top-6 left-1/2 -translate-x-1/2 z-10 text-center pointer-events-none max-w-2xl px-6">
+        <p className="text-white/80 text-sm md:text-base italic leading-relaxed drop-shadow">
+          Music is liquid architecture; architecture is frozen Music
+        </p>
+        <p className="text-white/50 text-[10px] md:text-xs tracking-[2px] mt-2 drop-shadow">
+          — Johann Wolfgang von Goethe
+        </p>
       </div>
 
       {/* Motion unlock (like the v0 template) */}

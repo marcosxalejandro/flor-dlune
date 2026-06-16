@@ -235,8 +235,7 @@ export default function FlorDLuneLanding() {
         >
           <div className="absolute inset-0 bg-black/55" />
           <div className="relative z-10 text-center px-6">
-            <div className="text-white/60 text-xs tracking-[4px] mb-2">THE ARCHIVE</div>
-            <h3 className="font-display text-white text-6xl tracking-[-2px] mb-8">Story &amp; Channels</h3>
+            <h3 className="font-display text-white text-5xl md:text-6xl tracking-[-2px] mb-8 leading-tight">St.Xanthias School for Gifted Children</h3>
             <div className="flex gap-4 justify-center">
               <a href="#story" className="border border-white/70 px-8 py-3 text-sm tracking-[2px] hover:bg-white hover:text-black transition">PEAK A LIL SNEAK</a>
               <a href="#channels" className="border border-white/70 px-8 py-3 text-sm tracking-[2px] hover:bg-white hover:text-black transition">CHANNELS</a>
@@ -287,10 +286,10 @@ export default function FlorDLuneLanding() {
           <div className="relative z-10 text-center px-6 max-w-3xl">
             <div className="text-[#E8A0BF] text-xs tracking-[5px] mb-3">THE ARCHIVE</div>
             <h2 className="font-display text-white text-6xl md:text-7xl tracking-[-2.5px] leading-none mb-4">
-              The Golden Witness
+              Flor D&apos;Lune&apos;s Arts&amp;History
             </h2>
             <p className="text-white/85 text-lg md:text-xl max-w-lg mx-auto tracking-[-0.2px]">
-              In the white room, the story wears gold and laughs back.
+              This whole brand is a temporal pincer
             </p>
 
             <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
