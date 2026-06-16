@@ -1,6 +1,16 @@
 export type ProductCategory = 'shirt' | 'cap' | 'socks';
 export type GelatoFulfillment = 'dtg' | 'embroidery';
 
+export const CAPSULE_COLOR_OPTIONS = [
+  { id: 'white', label: 'White', hex: '#F5F5F0' },
+  { id: 'black', label: 'Black', hex: '#1C1C1C' },
+  { id: 'blue', label: 'Blue', hex: '#2E4A7A' },
+  { id: 'green', label: 'Green', hex: '#3D6B4F' },
+  { id: 'grey', label: 'Grey', hex: '#9A9A9A' },
+  { id: 'brown', label: 'Brown', hex: '#6B4423' },
+  { id: 'lightbrown', label: 'Light Brown', hex: '#C9A27A' },
+] as const;
+
 export interface ProductVariant {
   id: string;
   label: string;
@@ -30,6 +40,7 @@ export interface Product {
   /** How Gelato fulfills this product when forwarding API orders */
   gelatoFulfillment?: GelatoFulfillment;
   variants: ProductVariant[];
+  colors?: { id: string; label: string; hex: string }[];
   launchReady: boolean;
   soldOut?: boolean;
 }
@@ -43,7 +54,7 @@ export const LAUNCH_PRODUCTS: Product[] = [
     id: 'signature-bonsai-tee',
     name: 'Capsule 01 Tee',
     brandLabel: "FLOR D'LUNE",
-    subtitle: 'White',
+    subtitle: 'Oversized Fit',
     price: 6200,
     displayPrice: '€62',
     image: '/images/products/tshirts/48950EC9-DA29-4E19-AC83-52DC09E926C3.JPG',
@@ -55,6 +66,7 @@ export const LAUNCH_PRODUCTS: Product[] = [
       { id: 'l', label: 'L', size: 'L' },
       { id: 'xl', label: 'XL', size: 'XL' },
     ],
+    colors: [...CAPSULE_COLOR_OPTIONS],
     launchReady: true,
     soldOut: true,
   },
@@ -135,6 +147,7 @@ export const LAUNCH_PRODUCTS: Product[] = [
       { id: 'm', label: 'M (40-43)', size: 'M' },
       { id: 'l', label: 'L (44-47)', size: 'L' },
     ],
+    colors: [...CAPSULE_COLOR_OPTIONS],
     launchReady: true,
     soldOut: true,
   },

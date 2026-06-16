@@ -25,6 +25,10 @@ body {
   font-family: var(--font-cormorant, "Cormorant Garamond", serif);
 }
 
+.font-handwritten {
+  font-family: var(--font-handwritten, "Dancing Script", cursive);
+}
+
 /* Premium button styles */
 .btn-premium {
   @apply px-8 py-3.5 rounded-full bg-[var(--flor-blossom)] text-[#0A0A0F] font-medium text-sm tracking-widest hover:bg-white transition-colors inline-flex items-center justify-center gap-2;

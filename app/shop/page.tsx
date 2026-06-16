@@ -159,7 +159,7 @@ export default function ShopPage() {
           <div className="flex items-center justify-between h-20">
             <a href="/" className="text-3xl tracking-[-1.5px]">FLOR D&apos;LUNE</a>
             <a href="/" className="text-sm px-6 py-2.5 border border-[#111] hover:bg-[#111] hover:text-white transition">
-              BACK TO GARDEN
+              BACK TO THE DAM-CANALS
             </a>
           </div>
         </div>

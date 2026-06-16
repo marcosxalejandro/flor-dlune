@@ -10,8 +10,10 @@ interface ProductCardProps {
 
 export default function ProductCard({ product, onAddToCart }: ProductCardProps) {
   const [selectedVariant, setSelectedVariant] = useState(product.variants[0]?.id ?? '');
+  const [selectedColor, setSelectedColor] = useState(product.colors?.[0]?.id ?? '');
   const soldOut = Boolean(product.soldOut);
   const disabled = !product.launchReady || soldOut;
+  const activeColor = product.colors?.find((c) => c.id === selectedColor);
 
   return (
     <div className={`product-card bg-white/85 backdrop-blur-sm border border-white/60 overflow-hidden group ${disabled ? 'opacity-60' : ''}`}>
@@ -62,11 +64,39 @@ export default function ProductCard({ product, onAddToCart }: ProductCardProps) 
               </div>
             )}
             {product.subtitle && (
-              <div className="text-sm text-[#666]">{product.subtitle}</div>
+              <div className="text-sm text-[#666]">
+                {product.subtitle}
+                {activeColor ? ` · ${activeColor.label}` : ''}
+              </div>
             )}
           </div>
           <div className="font-medium whitespace-nowrap">{product.displayPrice}</div>
         </div>
+
+        {product.colors && product.colors.length > 0 && (
+          <div className="mt-4">
+            <div className="text-[10px] tracking-[2px] text-[#888] mb-2">COLOUR</div>
+            <div className="flex flex-wrap gap-2">
+              {product.colors.map((color) => (
+                <button
+                  key={color.id}
+                  type="button"
+                  disabled={disabled}
+                  title={color.label}
+                  onClick={() => setSelectedColor(color.id)}
+                  className={`h-7 w-7 rounded-full border-2 transition ${
+                    selectedColor === color.id
+                      ? 'border-[#111] ring-2 ring-[#E8A0BF] ring-offset-1'
+                      : 'border-white/80 hover:border-[#111]'
+                  }`}
+                  style={{ backgroundColor: color.hex }}
+                  aria-label={color.label}
+                />
+              ))}
+            </div>
+            <div className="mt-2 text-xs text-[#666]">{activeColor?.label ?? 'White'}</div>
+          </div>
+        )}
 
         {product.variants.length > 1 && (
           <div className="mt-4 flex flex-wrap gap-2">

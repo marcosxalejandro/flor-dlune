@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Geist, Geist_Mono, Caveat } from 'next/font/google';
+import { Geist, Geist_Mono, Dancing_Script } from 'next/font/google';
 import './globals.css';
 
 const geistSans = Geist({
@@ -14,10 +14,10 @@ const geistMono = Geist_Mono({
   weight: ['400', '500', '600', '700'],
 });
 
-const caveat = Caveat({
-  variable: '--font-caveat',
+const dancingScript = Dancing_Script({
+  variable: '--font-handwritten',
   subsets: ['latin'],
-  weight: ['400', '700'],
+  weight: ['400', '500', '600', '700'],
 });
 
 export const metadata: Metadata = {
@@ -77,7 +77,7 @@ export default function RootLayout({
           />
         )}
       </head>
-      <body className={`${geistSans.variable} ${geistMono.variable} bg-[#0A0A0F] text-[#F8F8F5] antialiased`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} ${dancingScript.variable} bg-[#0A0A0F] text-[#F8F8F5] antialiased`}>
         {children}
       </body>
     </html>
