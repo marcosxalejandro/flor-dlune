@@ -1,9 +1,72 @@
 'use client'
 
-import React, { useRef, useState, useEffect } from 'react'
-import { Canvas, useFrame, useThree } from '@react-three/fiber'
-import { OrbitControls } from '@react-three/drei'
+import React, { useRef, useState, useEffect, useCallback } from 'react'
+import { Canvas, useFrame, useThree, type ThreeEvent } from '@react-three/fiber'
+import { OrbitControls, useCursor } from '@react-three/drei'
 import * as THREE from 'three'
+
+function navigateTo(target: string) {
+  if (target.startsWith('/') || target.startsWith('http')) {
+    window.location.href = target
+    return
+  }
+  if (target === '#home') {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+    return
+  }
+  const id = target.startsWith('#') ? target.slice(1) : target
+  const el = document.getElementById(id)
+  if (el) {
+    el.scrollIntoView({ behavior: 'smooth' })
+    return
+  }
+  window.location.href = target
+}
+
+function useClickableNav(href: string) {
+  const [hovered, setHovered] = useState(false)
+  useCursor(hovered)
+
+  const handleClick = useCallback((e: ThreeEvent<MouseEvent>) => {
+    e.stopPropagation()
+    navigateTo(href)
+  }, [href])
+
+  const handlePointerOver = useCallback((e: ThreeEvent<PointerEvent>) => {
+    e.stopPropagation()
+    setHovered(true)
+  }, [])
+
+  const handlePointerOut = useCallback(() => {
+    setHovered(false)
+  }, [])
+
+  return { handleClick, handlePointerOver, handlePointerOut }
+}
+
+function ClickHitZone({
+  position,
+  args,
+  href,
+}: {
+  position: [number, number, number]
+  args: [number, number, number]
+  href: string
+}) {
+  const { handleClick, handlePointerOver, handlePointerOut } = useClickableNav(href)
+
+  return (
+    <mesh
+      position={position}
+      onClick={handleClick}
+      onPointerOver={handlePointerOver}
+      onPointerOut={handlePointerOut}
+    >
+      <boxGeometry args={args} />
+      <meshBasicMaterial transparent opacity={0} depthWrite={false} />
+    </mesh>
+  )
+}
 
 // Zenax 3D scene with pink gradient background (from your saved backup)
 // • Pink full moon with glow layers
@@ -193,12 +256,30 @@ function SimpleCherryTree({ tilt }: { tilt: { x: number; y: number } }) {
           </mesh>
         ))}
       </group>
+
+      {/* Cherry blossoms (regular pink) → St. Xanthias */}
+      <ClickHitZone position={[-1.2, 1.2, 0.4]} args={[3.6, 5.2, 2.8]} href="#xanthias" />
+      {/* Lighter pink cherry blossoms → Hyperbolic Time Chamber */}
+      <ClickHitZone position={[0.9, 3.1, 0.2]} args={[3.8, 4.6, 2.6]} href="#eternal" />
     </group>
   )
 }
 
-function UFO({ position, speed = 1, parallax = 1.6, tilt }: { position: [number, number, number]; speed?: number; parallax?: number; tilt: { x: number; y: number } }) {
+function UFO({
+  position,
+  speed = 1,
+  parallax = 1.6,
+  tilt,
+  href,
+}: {
+  position: [number, number, number]
+  speed?: number
+  parallax?: number
+  tilt: { x: number; y: number }
+  href: string
+}) {
   const ref = useRef<THREE.Group>(null!)
+  const { handleClick, handlePointerOver, handlePointerOut } = useClickableNav(href)
 
   useFrame((state) => {
     if (!ref.current) return
@@ -218,7 +299,13 @@ function UFO({ position, speed = 1, parallax = 1.6, tilt }: { position: [number,
   })
 
   return (
-    <group ref={ref} position={position}>
+    <group
+      ref={ref}
+      position={position}
+      onClick={handleClick}
+      onPointerOver={handlePointerOver}
+      onPointerOut={handlePointerOut}
+    >
       <mesh>
         <cylinderGeometry args={[1.9, 1.1, 0.42, 32]} />
         <meshBasicMaterial color="#444" />
@@ -239,6 +326,7 @@ function UFO({ position, speed = 1, parallax = 1.6, tilt }: { position: [number,
 // Pink full moon with soft glow layers (from your saved Zenax backup)
 function PinkFullMoon({ tilt }: { tilt?: { x: number; y: number } }) {
   const group = useRef<THREE.Group>(null!)
+  const { handleClick, handlePointerOver, handlePointerOut } = useClickableNav('#story')
 
   useFrame(() => {
     if (group.current && tilt) {
@@ -251,17 +339,21 @@ function PinkFullMoon({ tilt }: { tilt?: { x: number; y: number } }) {
   return (
     <group ref={group} position={[5, 4.5, -8]}>
       {/* Core moon */}
-      <mesh>
+      <mesh
+        onClick={handleClick}
+        onPointerOver={handlePointerOver}
+        onPointerOut={handlePointerOut}
+      >
         <sphereGeometry args={[5.2]} />
         <meshBasicMaterial color="#f8c4d8" />
       </mesh>
-      {/* Soft outer glow */}
-      <mesh>
+      {/* Soft outer glow — visual only, clicks pass through to core moon */}
+      <mesh raycast={() => null}>
         <sphereGeometry args={[5.9]} />
         <meshBasicMaterial color="#E8A0BF" transparent opacity={0.28} />
       </mesh>
       {/* Extra wide bloom layer */}
-      <mesh>
+      <mesh raycast={() => null}>
         <sphereGeometry args={[7.2]} />
         <meshBasicMaterial color="#b07090" transparent opacity={0.12} />
       </mesh>
@@ -272,6 +364,7 @@ function PinkFullMoon({ tilt }: { tilt?: { x: number; y: number } }) {
 // Grey "plantenbak" / planter box — the cherry tree grows out of this (from your saved backup)
 function PlanterBox({ tilt }: { tilt?: { x: number; y: number } }) {
   const group = useRef<THREE.Group>(null!)
+  const { handleClick, handlePointerOver, handlePointerOut } = useClickableNav('#home')
 
   useFrame(() => {
     if (group.current && tilt) {
@@ -283,7 +376,11 @@ function PlanterBox({ tilt }: { tilt?: { x: number; y: number } }) {
   return (
     <group ref={group} position={[-1.85, -4.35, 0]}>
       {/* Main planter body — grey (not black) */}
-      <mesh>
+      <mesh
+        onClick={handleClick}
+        onPointerOver={handlePointerOver}
+        onPointerOut={handlePointerOut}
+      >
         <boxGeometry args={[6.8, 2.1, 3.6]} />
         <meshBasicMaterial color="#4a4a50" />
       </mesh>
@@ -316,10 +413,10 @@ function Scene({ tilt }: { tilt: { x: number; y: number } }) {
       <SimpleCherryTree tilt={tilt} />
 
       {/* 2 UFOs in front of the moon, 1 UFO behind the moon (exactly as in your saved backup) */}
-      <UFO position={[0, 6.5, -1.8]} speed={0.7} parallax={1.6} tilt={tilt} />
-      <UFO position={[5.5, 8.5, -2.2]} speed={1.1} parallax={1.4} tilt={tilt} />
+      <UFO position={[0, 6.5, -1.8]} speed={0.7} parallax={1.6} tilt={tilt} href="#playlist" />
+      <UFO position={[5.5, 8.5, -2.2]} speed={1.1} parallax={1.4} tilt={tilt} href="/shop" />
       {/* behind the moon (more negative z) */}
-      <UFO position={[7.5, 4.2, -15.5]} speed={0.5} parallax={2.2} tilt={tilt} />
+      <UFO position={[7.5, 4.2, -15.5]} speed={0.5} parallax={2.2} tilt={tilt} href="#rare-pieces" />
 
       {/* Extra interactive falling sakura petals (dense in the blossom area) */}
       {Array.from({ length: 26 }).map((_, i) => (
@@ -518,8 +615,8 @@ export default function CosmicHero3D() {
       </div>
 
       {/* Bottom hint */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-xs tracking-[2.5px] text-white/60 text-center z-10 drop-shadow">
-        MOVE MOUSE OR TILT DEVICE • ROZE MAAN • GREY PLANTENBAK • VOLLE BLOSSOM TREE
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-xs tracking-[2.5px] text-white/60 text-center z-10 drop-shadow max-w-lg px-4">
+        CLICK TO NAVIGATE • UFOS • MAAN • PLANTENBAK • CHERRY BLOSSOMS
       </div>
     </div>
   )
