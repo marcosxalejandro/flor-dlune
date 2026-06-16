@@ -254,7 +254,7 @@ export default function FlorDLuneLanding() {
         >
           <div className="absolute inset-0 bg-black/40" />
           <div className="relative z-10 text-center px-6 max-w-3xl">
-            <div className="text-[#E8A0BF] text-xs tracking-[5px] mb-3">THE ETERNAL</div>
+            <div className="text-[#E8A0BF] text-xs tracking-[5px] mb-3">Flor D&apos;Lune</div>
             <h2 className="font-display text-white text-6xl md:text-7xl tracking-[-2.5px] leading-none mb-4">
               The Hyperbolic Time Chamber
             </h2>
